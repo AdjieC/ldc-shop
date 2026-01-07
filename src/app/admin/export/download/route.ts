@@ -263,9 +263,8 @@ export async function GET(req: Request) {
         parts.push(`-- Database Migration Dump (Vercel Postgres -> Cloudflare D1)`)
         parts.push(`-- Generated at ${new Date().toISOString()}`)
         parts.push(``)
-        parts.push(`BEGIN TRANSACTION;`)
+        parts.push(`-- Note: Transaction statements removed for D1 compatibility`)
         parts.push(``)
-
 
         // Map camelCase keys to snake_case for SQL export
         const columnMapping: Record<string, string> = {
@@ -310,7 +309,7 @@ export async function GET(req: Request) {
           parts.push(``)
         }
 
-        parts.push(`COMMIT;`)
+        parts.push(`-- End of Dump`)
         parts.push(``)
 
         const sqlText = parts.join("\n")
